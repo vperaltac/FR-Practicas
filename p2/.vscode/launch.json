@@ -1,0 +1,31 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - YodafyServidorIterativo",
+            "request": "launch",
+            "mainClass": "YodafyServidorIterativo"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - YodafyServidorIterativo",
+            "request": "launch",
+            "mainClass": "YodafyServidorIterativo",
+            "projectName": "tcp"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - YodafyServidorIterativo",
+            "request": "launch",
+            "mainClass": "YodafyServidorIterativo",
+            "projectName": "Practica 2_1d1c3013"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - YodafyClienteTCP",
+            "request": "launch",
+            "mainClass": "YodafyClienteTCP",
+            "projectName": "Practica 2_1d1c3013"
+        }
+    ]
+}
