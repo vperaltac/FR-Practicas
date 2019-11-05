@@ -3,8 +3,6 @@
 // (CC) jjramos, 2012
 //
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Random;
 import java.io.BufferedReader;
