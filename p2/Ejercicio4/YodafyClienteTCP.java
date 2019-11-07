@@ -45,9 +45,8 @@ public class YodafyClienteTCP {
 
 			// Mostremos la cadena de caracteres recibidos:
 			System.out.println("Recibido: ");
-			for(int i=0;i<bytesLeidos;i++){
-				System.out.print((char)buferRecepcion[i]);
-			}
+			String s = new String(buferRecepcion);
+			System.out.println(s);
 			
 			// Una vez terminado el servicio, cerramos el socket
 			socket.close();
