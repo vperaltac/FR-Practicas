@@ -24,7 +24,6 @@ public class YodafyClienteTCP {
 		DatagramPacket paquete;
 		byte[] buferEnvio;
 		byte[] buferRecepcion= new byte[256];
-		int bytesLeidos=0;
 		DatagramSocket socket;
 		
 		try {
@@ -41,7 +40,6 @@ public class YodafyClienteTCP {
 			// rellenar. El método "read(...)" devolverá el número de bytes leídos.			
 			paquete = new DatagramPacket(buferRecepcion, buferRecepcion.length);
 			socket.receive(paquete);
-			bytesLeidos = paquete.getLength();
 
 			// Mostremos la cadena de caracteres recibidos:
 			System.out.println("Recibido: ");
