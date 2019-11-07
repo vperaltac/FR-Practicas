@@ -11,8 +11,8 @@ public class Juego extends Thread {
     private Socket socketServicio;
     private int puntuacion;
     private int num_preguntas;
-    private String reglas;
-    ArrayList<Pregunta> deportes = new ArrayList();
+    private ArrayList<String> reglas = new ArrayList<>();
+    ArrayList<Pregunta> deportes = new ArrayList<>();
     ArrayList<Pregunta> politica = new ArrayList<>();
     ArrayList<Pregunta> geografia = new ArrayList<>();
     ArrayList<Pregunta> ciencia = new ArrayList<>();
@@ -62,7 +62,12 @@ public class Juego extends Thread {
         nick = "";
         puntuacion = 0;
         num_preguntas = 16;
-        reglas = " ";
+
+        reglas.add("Recibirás una pregunta de un tema aleatorio decidido por la tirada de un dado.");
+        reglas.add("Si la respuesta a la pregunta es correcta ganas 1 punto, en caso contrario pierdes 1 punto.");
+        reglas.add("Se comienza la partida con 0 puntos, las situaciones que definen el fin de la partida son las siguientes:");
+        reglas.add("    * El jugador tiene menos de 0 puntos.");
+        reglas.add("    * Se han completado todas las preguntas.");
     }
 
     //Devuelve un entero aleatorio con un valor que representa a una temática con preguntas disponibles.
@@ -177,13 +182,15 @@ public class Juego extends Thread {
                         break;
 
                     case "103":
-                        respuesta = "205 " + reglas;
-                        outPrinter.println(respuesta);
-                        outPrinter.flush();
+                        for(String regla: reglas){
+                            outPrinter.println("205" + regla);
+                            outPrinter.flush();
+                        }
                         break;
 
                     case "104":
                         respuesta = "203 Juego terminado, Su puntuacion es de: " + puntuacion;
+                        puntuacion = 0;
                         outPrinter.println(respuesta);
                         outPrinter.flush();
                         codigo="104";

@@ -89,8 +89,15 @@ public class Cliente {
 
                     case "205":
                         System.out.println("REGLAS DEL JUEGO RECIBIDAS:\n");
-                        recibida=recibida.substring(3,recibida.length()-1);
+
+                        while(inReader.ready()){
+                            recibida = recibida.substring(3,recibida.length()-1);
+                            System.out.println(recibida);
+                            recibida = inReader.readLine();
+                        }
+                        recibida = recibida.substring(3,recibida.length()-1);
                         System.out.println(recibida);
+
                         System.out.println("Elige una opcion e introduzca su código númerico(exclusivamente): \n" +
                                 "100.-tirar dado\n" +
                                 "102.-ver Puntuacion\n" +
