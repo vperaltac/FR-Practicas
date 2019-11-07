@@ -123,6 +123,7 @@ public class Cliente {
                 // Una vez terminado el servicio, cerramos el socket (automáticamente se cierran
                 // el inpuStream  y el outputStream)
                 socketServicio.close();
+            teclado.close();
 
                 // Excepciones:
             } catch (UnknownHostException e) {
