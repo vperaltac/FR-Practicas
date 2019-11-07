@@ -23,5 +23,10 @@
 hs_err_pid*
 
 *.pdf
+
+# Ignorar archivos de configuración de Visual Studio Code
 */.vscode
 .vscode
+
+# Ignorar archivos de configuración de IntellijIDEA
+.idea
