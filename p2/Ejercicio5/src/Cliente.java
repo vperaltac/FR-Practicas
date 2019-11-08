@@ -41,7 +41,7 @@ public class Cliente {
             while(!codigo.equals("203")){
                 switch (codigo){
                     case "201":
-                        recibida=recibida.substring(3,recibida.length()-1);
+                        recibida=recibida.substring(4,recibida.length());
                         System.out.println(recibida);
                         entrada="101 ";
                         entrada+=teclado.nextLine();
@@ -73,7 +73,7 @@ public class Cliente {
                         break;
 
                     case "204":
-                        recibida=recibida.substring(3,recibida.length()-1);
+                        recibida=recibida.substring(4,recibida.length());
                         System.out.println(recibida);
                         System.out.println("Elige una opcion e introduzca su código númerico(exclusivamente): \n" +
                                 "100.-tirar dado\n" +
@@ -88,14 +88,7 @@ public class Cliente {
                         break;
 
                     case "205":
-                        System.out.println("REGLAS DEL JUEGO RECIBIDAS:\n");
-
-                        while(inReader.ready()){
-                            recibida = recibida.substring(3,recibida.length()-1);
-                            System.out.println(recibida);
-                            recibida = inReader.readLine();
-                        }
-                        recibida = recibida.substring(3,recibida.length()-1);
+                        recibida = recibida.substring(4,recibida.length());
                         System.out.println(recibida);
 
                         System.out.println("Elige una opcion e introduzca su código númerico(exclusivamente): \n" +
@@ -111,18 +104,18 @@ public class Cliente {
                         break;
 
                     case "203":
-                        recibida=entrada.substring(3,entrada.length()-1);
+                        recibida=entrada.substring(4,entrada.length());
                         System.out.println(recibida);
-                    break;
+                        break;
 
-
-
+                    default:
+                        System.out.println("La opción introducida no existe.");
                 }
+                
                 recibida = inReader.readLine();
                 System.out.println(recibida);
                 codigo=recibida.substring(0,3);
             }
-
 
             // Una vez terminado el servicio, cerramos el socket (automáticamente se cierran
             // el inpuStream  y el outputStream)

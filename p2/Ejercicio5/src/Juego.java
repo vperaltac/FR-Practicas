@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.io.InputStreamReader;
@@ -10,12 +12,15 @@ public class Juego extends Thread {
     private Socket socketServicio;
     private int puntuacion;
     private int num_preguntas;
-    private ArrayList<String> reglas = new ArrayList<>();
+    private String reglas;
     ArrayList<Pregunta> deportes = new ArrayList<>();
     ArrayList<Pregunta> politica = new ArrayList<>();
     ArrayList<Pregunta> geografia = new ArrayList<>();
     ArrayList<Pregunta> ciencia = new ArrayList<>();
     String nick;
+
+    //private Pattern pattern = Pattern.compile("^([0-9]+)");
+    //private Matcher matcher;
 
     // Constructor que tiene como parámetro una referencia al socket abierto en por otra clase
     public Juego(Socket socketServicio) {
@@ -62,11 +67,7 @@ public class Juego extends Thread {
         puntuacion = 0;
         num_preguntas = 16;
 
-        reglas.add("Recibirás una pregunta de un tema aleatorio decidido por la tirada de un dado.");
-        reglas.add("Si la respuesta a la pregunta es correcta ganas 1 punto, en caso contrario pierdes 1 punto.");
-        reglas.add("Se comienza la partida con 0 puntos, las situaciones que definen el fin de la partida son las siguientes:");
-        reglas.add("    * El jugador tiene menos de 0 puntos.");
-        reglas.add("    * Se han completado todas las preguntas.");
+        reglas = "Recibirás una pregunta de un tema aleatorio decidido por la tirada del dado. Acertar una pregunta suma 1 punto y fallar una pregunta resta 1 punto. Se comienza con 0 puntos. Al llegar a puntos negativos o terminar todas las preguntas se termina el juego.";
     }
 
     //Devuelve un entero aleatorio con un valor que representa a una temática con preguntas disponibles.
@@ -120,7 +121,11 @@ public class Juego extends Thread {
 
             //Leemos el nick del usuario
             String recibida = inReader.readLine();
-            codigo = recibida.substring(0, 3);
+            System.out.println(recibida);
+            Pattern pattern = Pattern.compile("^([0-9]+)");
+            Matcher matcher = pattern.matcher(recibida);
+            matcher.find();
+            codigo = matcher.group();
             nick = recibida.substring(4, recibida.length() - 1);
 
             //Inicializamos o creamos variables necesarias como dado o pregunta
@@ -134,9 +139,10 @@ public class Juego extends Thread {
 
             //Leemos petición de servicio del cliente y extraemos el codigo para identificarla posteriormente
             recibida = inReader.readLine();
-            codigo = recibida.substring(0, 3);
+            matcher = pattern.matcher(recibida);
+            matcher.find();
+            codigo = matcher.group();
             System.out.println(codigo);
-
 
             while (recibida != "104") {
                 switch (codigo) {
@@ -181,10 +187,9 @@ public class Juego extends Thread {
                         break;
 
                     case "103":
-                        for(String regla: reglas){
-                            outPrinter.println("205" + regla);
-                            outPrinter.flush();
-                        }
+                        respuesta = "205 " + reglas;
+                        outPrinter.println(respuesta);
+                        outPrinter.flush();
                         break;
 
                     case "104":
@@ -194,16 +199,29 @@ public class Juego extends Thread {
                         outPrinter.flush();
                         codigo="104";
                         break;
+                    case "105":
+                        respuesta="202 Juego iniciado";
+                        outPrinter.println(respuesta);
+                        outPrinter.flush();
+                        break;
+                    default:
+                        respuesta="202 Juego iniciado";
+                        outPrinter.println(respuesta);
+                        outPrinter.flush();
+                        break;
                 }
-                if(codigo!="104"){
+
+                if(codigo != "104"){
                     recibida = inReader.readLine();
                     System.out.println(recibida);
 
-                    codigo = recibida.substring(0, 3);
+                    matcher = pattern.matcher(recibida);
+                    matcher.find();
+                    codigo = matcher.group();
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error al obtener los flujso de entrada/salida.");
+            System.err.println("Error al obtener los flujos de entrada/salida.");
         }
 
     }
