@@ -40,12 +40,20 @@ public class Cliente {
 
             while(!codigo.equals("203")){
                 switch (codigo){
+                    case "200":
+                        System.out.println("Elige una opcion e introduzca su código númerico(exclusivamente): \n" +
+                                "100.-tirar dado\n");
+                        entrada=teclado.nextLine();
+
+                        outPrinter.println(entrada);
+                        outPrinter.flush();
+                        break;
+
                     case "201":
                         recibida=recibida.substring(4,recibida.length());
                         System.out.println(recibida);
                         entrada="101 ";
                         entrada+=teclado.nextLine();
-                        System.out.println(entrada);
                         outPrinter.println(entrada);
                         outPrinter.flush();
                     break;
@@ -63,13 +71,9 @@ public class Cliente {
                         outPrinter.flush();
                         break;
 
-                    case "200":
-                        System.out.println("Elige una opcion e introduzca su código númerico(exclusivamente): \n" +
-                                "100.-tirar dado\n");
-                        entrada=teclado.nextLine();
-
-                        outPrinter.println(entrada);
-                        outPrinter.flush();
+                    case "203":
+                        recibida=entrada.substring(4,entrada.length());
+                        System.out.println(recibida);
                         break;
 
                     case "204":
@@ -103,17 +107,11 @@ public class Cliente {
                         outPrinter.flush();
                         break;
 
-                    case "203":
-                        recibida=entrada.substring(4,entrada.length());
-                        System.out.println(recibida);
-                        break;
-
                     default:
                         System.out.println("La opción introducida no existe.");
                 }
                 
                 recibida = inReader.readLine();
-                System.out.println(recibida);
                 codigo=recibida.substring(0,3);
             }
 
