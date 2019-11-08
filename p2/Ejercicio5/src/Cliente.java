@@ -41,9 +41,12 @@ public class Cliente {
             while(!codigo.equals("203")){
                 switch (codigo){
                     case "200":
-                        System.out.println("Elige una opcion e introduzca su código númerico(exclusivamente): \n" +
-                                "100.-tirar dado\n");
-                        entrada=teclado.nextLine();
+                    System.out.println("Elige una opcion e introduzca su código númerico(exclusivamente): \n" +
+                                        "100.-tirar dado\n" +
+                                        "102.-ver Puntuacion\n" +
+                                        "103.-recibir reglas del juego\n" +
+                                        "104.-terminar Partida");
+                    entrada=teclado.nextLine();
 
                         outPrinter.println(entrada);
                         outPrinter.flush();
@@ -59,6 +62,8 @@ public class Cliente {
                     break;
 
                     case "202":
+                        recibida=recibida.substring(4,recibida.length());
+                        System.out.println(recibida);
                         System.out.println("Elige una opcion e introduzca su código númerico(exclusivamente): \n" +
                                 "100.-tirar dado\n" +
                                 "102.-ver Puntuacion\n" +
