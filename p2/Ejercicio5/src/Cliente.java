@@ -71,11 +71,6 @@ public class Cliente {
                         outPrinter.flush();
                         break;
 
-                    case "203":
-                        recibida=entrada.substring(4,entrada.length());
-                        System.out.println(recibida);
-                        break;
-
                     case "204":
                         recibida=recibida.substring(4,recibida.length());
                         System.out.println(recibida);
@@ -114,6 +109,9 @@ public class Cliente {
                 recibida = inReader.readLine();
                 codigo=recibida.substring(0,3);
             }
+        
+            recibida=recibida.substring(4,recibida.length());
+            System.out.println(recibida);
 
             // Una vez terminado el servicio, cerramos el socket (automáticamente se cierran
             // el inpuStream  y el outputStream)

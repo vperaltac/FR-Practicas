@@ -194,7 +194,6 @@ public class Juego extends Thread {
 
                     case "104":
                         respuesta = "203 Juego terminado, Su puntuacion es de: " + puntuacion;
-                        puntuacion = 0;
                         outPrinter.println(respuesta);
                         outPrinter.flush();
                         codigo="104";
