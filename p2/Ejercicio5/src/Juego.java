@@ -122,7 +122,7 @@ public class Juego extends Thread {
             //Leemos el nick del usuario
             String recibida = inReader.readLine();
             System.out.println(recibida);
-            Pattern pattern = Pattern.compile("^([0-9]+)");
+            Pattern pattern = Pattern.compile("([0-9]+)");
             Matcher matcher = pattern.matcher(recibida);
             matcher.find();
             codigo = matcher.group();
