@@ -87,7 +87,7 @@ public class Juego extends Thread {
     //Método que devuelve un par (pregunta,respuesta correcta) de un tema determinado por el dado.
     public Pregunta obtenerPregunta(int dado) {
         Pregunta p=new Pregunta("","");
-        System.out.println("dado:"+dado+"\n");
+        System.out.println("Resultado del dado: "+dado+"\n");
         switch (dado) {
             case 1:
                 p=deportes.get(0);
@@ -121,7 +121,8 @@ public class Juego extends Thread {
 
             //Leemos el nick del usuario
             String recibida = inReader.readLine();
-            System.out.println(recibida);
+            System.out.println("Cliente conectado: " + recibida);
+
             Pattern pattern = Pattern.compile("([0-9]+)");
             Matcher matcher = pattern.matcher(recibida);
             matcher.find();
@@ -142,7 +143,7 @@ public class Juego extends Thread {
             matcher = pattern.matcher(recibida);
             matcher.find();
             codigo = matcher.group();
-            System.out.println(codigo);
+            System.out.println("Petición recibida: " + codigo);
 
             while (recibida != "104") {
                 switch (codigo) {
@@ -212,7 +213,7 @@ public class Juego extends Thread {
 
                 if(codigo != "104"){
                     recibida = inReader.readLine();
-                    System.out.println(recibida);
+                    System.out.println("Petición recibida: " + recibida);
 
                     matcher = pattern.matcher(recibida);
                     matcher.find();
